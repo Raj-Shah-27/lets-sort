@@ -276,35 +276,35 @@ mergeBtn.addEventListener('click',async function(){
 //Quick Sort
 async function partition(items,l,r){
     let i=l-1;
-    items[r].style.background="#E9C46A";
+    items[r].style.background="red";
     for(let j=l;j<=r-1;j++){
-        items[j].style.background="#F4A261";
+        items[j].style.background="yellow";
         await delayWait(delay);
         if(parseInt(items[j].style.height) < parseInt(items[r].style.height)){
             i++;
             swap(items[i],items[j]);
-            items[i].style.background="#E76F51";
-            items[j].style.background="#E76F51";
+            items[i].style.background="orange";
+            if(i!=j) items[j].style.background="orange";
             await delayWait(delay);
         }
         else{
-            items[j].style.background="#D10363";
+            items[j].style.background="pink";
         }
     }
    
     i++;
     await delayWait(delay);
     swap(items[i],items[r]);
-    items[r].style.background="#D10363";
-    items[i].style.background="#36BA98";
+    items[r].style.background="pink";
+    items[i].style.background="green";
 
     await delayWait(delay);
     for(let k=0;k<items.length;k++){
-        if(items[k].style.background!="#36BA98"){
+        if(items[k].style.background != "green"){
             items[k].style.background="#FF204E";
         }
     }
-    return parseInt(i);
+    return i;
 }
 
 async function quicksort(items,l,r){
@@ -315,8 +315,8 @@ async function quicksort(items,l,r){
     }
     else{
         if(l>=0 && r>=0 && l<items.length && r<items.length){
-            items[l].style.background="#36BA98";
-            items[r].style.background="#36BA98";
+            items[r].style.background="green";
+            items[l].style.background="green";
         }
     }
 }
@@ -325,7 +325,7 @@ const quickBtn = document.querySelector('#quick-sort');
 quickBtn.addEventListener('click',async function(){
     let items=document.querySelectorAll(".bar");
     let l=0;
-    let r=parseInt(items.length)-1;
+    let r=items.length-1;
     disableArrayBtn();
     disableSize();
     disableSortingBtns();
